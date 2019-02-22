@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var sizeMultiply = 1;
+		</script>
+		<script src="./simple.js">
+			var axiom = "Fx";
+
+			var rules = {
+				"F": "F",
+				"+": "+",
+				"-": "-",
+				"x": "x+yF",
+				"y": "Fx-y"
+			};
+
+			var actions = {};
+
+			actions['F'] = function() {
+				turtle.moveWithPen(length);
+			}
+
+			actions['+'] = function() {
+				turtle.turnLeft(angle);
+			}
+
+			actions['-'] = function() {
+				turtle.turnRight(angle);
+			}
+
+			actions['x'] = function() {
+			}
+
+			actions['y'] = function() {
+			}
+
+			var system = axiom;
+
+			var iterations = 14;
+			var angle = 90;
+			var length = 4;
+			
+			for(let i = 0; i < iterations; i++) {
+				var currentLength = system.length;
+				var newSystem = "";
+
+				for(let u = 0; u < currentLength; u++) {
+					let action = rules[system[u]];
+					newSystem = newSystem + action;
+				}
+				system = newSystem;
+			}
+
+			console.log(system);
+
+			for(let i = 0; i < system.length; i++) {
+				let action = actions[system[i]];
+				action();
+			}
+		</script>
+	</body>
+</html>

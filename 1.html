@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<script src="./simple.js">
+			var angle = 90;
+			var length = 5;
+
+			function update() {
+				turtle.moveWithPen(length);
+				turtle.turnLeft(angle);
+				length+=3;
+				angle+= 0.0008;
+			}
+		</script>
+	</body>
+</html>
