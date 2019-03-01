@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		</script>
+		<script src="./simple.js">
+			var xStart = -2.5;
+			var xEnd   = 1;
+			var yStart = -1;
+			var yEnd   = 1;
+
+			var max_it = 1000;
+
+			for(let x = 0; x < totalWidth; x++) {
+				for(let y = 0; y < totalHeight; y++) {
+					let c_re = ((x / totalWidth) * (xEnd - xStart)) + xStart;
+					let c_im = ((y / totalHeight) * (yEnd - yStart)) + yStart;
+					let re_n = 0;
+					let im_n = 0;
+					let it   = 0;
+
+					while(((re_n * re_n + im_n * im_n) < 4) && (it < max_it)) {
+						let re_n_plus_one = re_n * re_n - im_n * im_n + c_re;
+						let im_n_plus_one = 2 * re_n * im_n + c_im;
+
+						re_n = re_n_plus_one;
+						im_n = im_n_plus_one;
+
+						it++;
+					}
+
+					if(it == max_it) {
+						color = 'black';
+					} else {
+						color = mixColor(255 - it%155, 255 - it%255, 255 - it%55);
+					}
+
+					rectangle(x, y, 1, 1, color);
+				}
+			}
+		</script>
+	</body>
+</html>
